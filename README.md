@@ -47,26 +47,70 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
 
+1.Start the module using module projname().
 
+2.Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+3.Use wire to assign intermediate outputs.
+
+4.Use and, or and not gates to get the desired output.
+
+5.End the module.
+
+6.Generate RTL realization and timing diagrams.
 
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by:Thenmozhi P 
+RegisterNumber:  212221230116
 */
 
 
+## MULTIPLEXER
+````
+module multiplexer(I0,I1,I2,I3,S0,S1,Y);
+input I0,I1,I2,I3,S0,S1;
+output Y;
+wire P,Q,R,S,S0c,S1c;
+not(S0c,S0);
+nor(S1c,S1);
+and(P,S0c,S1c,I0);
+and(Q,S0c,S1,I1);
+and(R,S0,S1c,I2);
+and(S,S0,S1,I3);
+or(Y,P,Q,R,S);
+endmodule
+``````
+## DEMULTIPLEXER
+```
+module demux(Y0,Y1,Y2,Y3,S0,S1,I);
+input S0,S1,I;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+nor (S0C,S0);
+nor (S1C,S1);
+and (Y0,I,S0C,S1C);
+and (Y1,I,S0C,S1);
+and (Y2,I,S0,S1C);
+and (Y3,I,S0,S1);
+endmodule
 
 
+```
 
 
 ### RTL LOGIC  
 
+MULTIPLEXER :
 
 
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/e2530624-3bda-483b-b5be-a083e40b8584)
+
+DEMULTIPLEXER:
+
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/9efe34e5-e6d9-4f79-aa93-7f2b7e0b6d36)
 
 
 
@@ -74,15 +118,30 @@ RegisterNumber:
 
 ### TIMING DIGRAMS  
 
+MULTIPLEXER :
+
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/af024bb6-f1ed-41c1-9f5c-377be57bd8b9)
 
 
+DEMULTIPLEXER:
+
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/fac5932d-08f7-4cda-816d-9095ba9dd952)
 
 
 ### TRUTH TABLE 
 
+4*1 MULTIPLEXER
 
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/28ae06de-c905-4645-ac21-6b78a282beaa)
+
+
+1*4 DEMULTIPLEXER
+
+![image](https://github.com/Thenmozhi-Palanisamy/Exercise-07-Multiplexer-and-De-multiplexer/assets/95198708/b4d8ceb9-90f2-4990-be31-1be39852222a)
 
 
 
 
 ### RESULTS 
+
+Hence, 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
